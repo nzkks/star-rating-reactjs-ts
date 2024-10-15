@@ -1,4 +1,4 @@
-# App Name
+# Star Rating using Reactjs and Typescript
 
 App Details
 
