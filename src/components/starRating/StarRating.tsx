@@ -52,11 +52,9 @@ const StarRating = ({ count = 5, value = 0, onChange = () => {} }: StarRatingPro
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ overflow: 'hidden', position: 'relative' }}>
-        {stars.map((star, idx) => (
-          <Star key={idx} />
-        ))}
-      </div>
+      {stars.map((star, idx) => (
+        <Star key={idx} active={star.active} />
+      ))}
     </div>
   );
 };
