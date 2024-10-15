@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import Star from '../star/Star';
+
 type StarType = {
   active: boolean;
 };
@@ -52,7 +54,7 @@ const StarRating = ({ count = 5, value = 0, onChange = () => {} }: StarRatingPro
     <div style={{ display: 'flex' }}>
       <div style={{ overflow: 'hidden', position: 'relative' }}>
         {stars.map((star, idx) => (
-          <span key={idx}>★</span>
+          <Star key={idx} />
         ))}
       </div>
     </div>
