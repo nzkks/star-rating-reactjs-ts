@@ -11,9 +11,26 @@ type StarRatingProps = {
 };
 
 const StarRating = ({ count = 5, value = 0, onChange = () => {} }: StarRatingProps) => {
+  const [currentValue, setCurrentValue] = useState(0);
   const [stars, setStars] = useState<StarType[]>([]);
 
-  const getStars = (activeCount: number) => {
+  const validateInitialValue = (value: number, count: number) => {
+    if (value < 0 || value > count) {
+      setCurrentValue(0);
+    } else {
+      setCurrentValue(value);
+    }
+  };
+
+  const getRate = () => {
+    return Math.round(currentValue);
+  };
+
+  const getStars = (activeCount: number | undefined) => {
+    if (typeof activeCount === 'undefined') {
+      activeCount = getRate();
+    }
+
     const stars = [];
     for (let i = 0; i < count; i++) {
       stars.push({
@@ -25,6 +42,7 @@ const StarRating = ({ count = 5, value = 0, onChange = () => {} }: StarRatingPro
   };
 
   useEffect(() => {
+    validateInitialValue(value, count);
     setStars(getStars(value));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
