@@ -16,7 +16,7 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
   const [currentValue, setCurrentValue] = useState(0);
   const [stars, setStars] = useState<StarType[]>([]);
 
-  const validateInitialValue = (value: number, numOfStars: number) => {
+  const validateInitialValue = (value: number, numOfStars: number): void => {
     if (value < 0 || value > numOfStars) {
       setCurrentValue(0);
     } else {
@@ -24,11 +24,11 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
     }
   };
 
-  const getRate = () => {
+  const getRate = (): number => {
     return Math.round(currentValue);
   };
 
-  const getStars = (activeStars: number | undefined) => {
+  const getStars = (activeStars?: number): StarType[] => {
     if (typeof activeStars === 'undefined') {
       activeStars = getRate();
     }
@@ -53,7 +53,7 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
   return (
     <div style={{ display: 'flex' }}>
       {stars.map((star, idx) => (
-        <Star key={idx} active={star.active} />
+        <Star key={idx} index={idx} active={star.active} />
       ))}
     </div>
   );
