@@ -104,6 +104,7 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
           onClick={handleClick}
         />
       ))}
+      <div style={{ marginLeft: 10 }}>{currentValue}</div>
     </div>
   );
 };
