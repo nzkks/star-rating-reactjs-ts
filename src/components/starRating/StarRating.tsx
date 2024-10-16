@@ -62,6 +62,21 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
     setStars(getStars());
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
+    const index = Number(e.currentTarget.dataset.index);
+
+    const activeStars = index + 1;
+    handleUpdatedValue(activeStars);
+  };
+
+  const handleUpdatedValue = (activeStars: number): void => {
+    if (activeStars !== currentValue) {
+      setStars(getStars(activeStars));
+      setCurrentValue(activeStars);
+      onChange(activeStars);
+    }
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       {stars.map((star, idx) => (
@@ -71,6 +86,7 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
           active={star.active}
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         />
       ))}
     </div>

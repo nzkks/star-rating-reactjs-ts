@@ -5,9 +5,10 @@ type StarProps = {
   active: boolean;
   onMouseOver: (e: React.MouseEvent<HTMLElement>) => void;
   onMouseLeave: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
-const Star = ({ index, active, onMouseOver, onMouseLeave }: StarProps) => {
+const Star = ({ index, active, onMouseOver, onMouseLeave, onClick }: StarProps) => {
   const style = Object.assign({}, defaultStyles, {
     color: active ? 'yellow' : 'gray',
   });
@@ -19,6 +20,7 @@ const Star = ({ index, active, onMouseOver, onMouseLeave }: StarProps) => {
       onMouseOver={onMouseOver}
       onMouseMove={onMouseOver}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
       style={style}
     >
       ★
