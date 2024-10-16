@@ -51,11 +51,11 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
   }, []);
 
   const handleMouseOver = (e: React.MouseEvent<HTMLElement>): void => {
-    let index = Number(e.currentTarget.dataset.index);
+    const index = Number(e.currentTarget.dataset.index);
 
-    index += 1;
+    const activeStars = index + 1;
 
-    setStars(getStars(index));
+    setStars(getStars(activeStars));
   };
 
   const handleMouseLeave = (): void => {
