@@ -50,10 +50,28 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleMouseOver = (e: React.MouseEvent<HTMLElement>): void => {
+    let index = Number(e.currentTarget.dataset.index);
+
+    index += 1;
+
+    setStars(getStars(index));
+  };
+
+  const handleMouseLeave = (): void => {
+    setStars(getStars());
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       {stars.map((star, idx) => (
-        <Star key={idx} index={idx} active={star.active} />
+        <Star
+          key={idx}
+          index={idx}
+          active={star.active}
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        />
       ))}
     </div>
   );
