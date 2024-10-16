@@ -77,8 +77,23 @@ const StarRating = ({ numOfStars = 5, value = 0, onChange = () => {} }: StarRati
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>): void => {
+    const { key } = e;
+    let activeStars = currentValue;
+
+    if (key === 'ArrowUp' || (key === 'ArrowRight' && activeStars < numOfStars)) {
+      e.preventDefault();
+      activeStars += 1;
+    } else if (key === 'ArrowDown' || key === 'ArrowLeft') {
+      e.preventDefault();
+      activeStars -= 1;
+    }
+
+    handleUpdatedValue(activeStars);
+  };
+
   return (
-    <div style={{ display: 'flex' }}>
+    <div tabIndex={0} onKeyDown={handleKeyDown} style={{ display: 'flex' }}>
       {stars.map((star, idx) => (
         <Star
           key={idx}
